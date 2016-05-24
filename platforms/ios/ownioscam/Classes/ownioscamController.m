@@ -22,9 +22,21 @@
         self.picker.delegate = self;
      //   self.overlay = [[ownioscamController alloc] init @"ownioscam" bundle:nil]
                         
-        UIView * overlayView = [[UIView alloc] initWithFrame:self.picker.view.frame];
-        [overlayView.layer setOpaque:NO];
-        overlayView.opaque = NO;
+        UIView *controllerView = self.picker.view;
+        
+        controllerView.alpha = 0.0;
+        controllerView.transform = CGAffineTransformMakeScale(0.5, 0.5);
+        
+        [[[[UIApplication sharedApplication] delegate] window] addSubview:controllerView];
+        
+        [UIView animateWithDuration:0.3
+                              delay:0.0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             controllerView.alpha = 1.0;
+                         }
+                         completion:nil
+         ];
         
         // Set the frames to be full screen
       //  CGRect screenFrame = [[UIScreen mainScreen] bounds];
@@ -32,7 +44,7 @@
      //   self.picker.view.frame = screenFrame;
         
         // Set this VC's view as the overlay view for the UIImagePickerController
-        self.picker.cameraOverlayView = self.view;
+      //  self.picker.cameraOverlayView = self.view;
        // [self presentedViewController : self.picker animated:true completion:nil];
         [self presentModalViewController:self.picker animated:YES];
     }
