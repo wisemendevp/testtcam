@@ -25,7 +25,7 @@
         UIView *controllerView = self.picker.view;
         
         controllerView.alpha = 0.0;
-        controllerView.transform = CGAffineTransformMakeScale(0.5, 0.5);
+        controllerView.transform = CGAffineTransformMakeScale(1, 1);
         
         [[[[UIApplication sharedApplication] delegate] window] addSubview:controllerView];
         
